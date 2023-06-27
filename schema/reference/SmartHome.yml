@@ -1,0 +1,62 @@
+openapi: 3.1.0
+x-stoplight:
+  id: k7adndwlnyphe
+info:
+  title: Smart Home API
+  version: '1.0'
+  description: Control smart home devices
+  contact:
+    name: Takaki Takeuchi
+    url: 'https://takaki.takeu.ch'
+    email: takaki@takeu.ch
+servers:
+  - url: 'http://localhost:3000/smart_home'
+paths:
+  /meter:
+    get:
+      summary: Get Meter Status
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - temperature
+                      - humidity
+                    properties:
+                      temperature:
+                        type: number
+                        description: temperature in celsius
+                      humidity:
+                        type: integer
+                        description: humidity percentage
+                required:
+                  - data
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Error.yaml
+      operationId: get-meter-status
+      description: Get current status (temperature and humidity) from the meter.
+      x-internal: true
+      tags:
+        - meter
+    parameters: []
+components:
+  schemas: {}
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: ''
+x-internal: true
+security:
+  - BearerToken: []
