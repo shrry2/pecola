@@ -15,7 +15,7 @@ Adjust the environment variables in `.env` to your needs.
 ### Database
 
 ```bash
-$ docker compose run --rm api bin/rails db:prepare
+$ make db-prepare
 ```
 
 ## Development
@@ -23,5 +23,17 @@ $ docker compose run --rm api bin/rails db:prepare
 ### Start containers
 
 ```bash
-$ docker compose up -d
+$ make up
+```
+
+### Stop containers
+
+```bash
+$ make down
+```
+
+### Run tests
+
+```bash
+$ make test
 ```
