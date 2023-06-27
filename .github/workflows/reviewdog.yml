@@ -1,0 +1,24 @@
+name: reviewdog
+
+on: [ pull_request ]
+
+jobs:
+  rubocop:
+    name: runner / rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Read Ruby version from .ruby-version
+        id: ruby-version
+        run: echo ::set-output name=version::$(cat ./api/.ruby-version)
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ steps.ruby-version.outputs.version }}
+      - name: rubocop
+        uses: reviewdog/action-rubocop@v2
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile
+          reporter: github-pr-review
+          workdir: ./api
