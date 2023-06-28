@@ -1,0 +1,11 @@
+title: Error
+x-stoplight:
+  id: 0cu44en4eilhe
+x-tags:
+  - error
+type: object
+properties:
+  message:
+    type: string
+description: Common error response schema
+x-internal: true
