@@ -50,3 +50,5 @@ group :development do
   gem 'rubocop-rails', '~> 2.20', require: false
   gem 'rubocop-rspec', '~> 2.22', require: false
 end
+
+gem 'switchbot', '~> 0.8.0'
