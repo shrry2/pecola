@@ -1,18 +1,18 @@
-openapi: 3.1.0
+openapi: 3.0.0
 x-stoplight:
   id: k7adndwlnyphe
 info:
-  title: Smart Home API
+  title: Pecola API
   version: '1.0'
-  description: Control smart home devices
+  description: Core API Schema for Pecola
   contact:
     name: Takaki Takeuchi
     url: 'https://takaki.takeu.ch'
     email: takaki@takeu.ch
 servers:
-  - url: 'http://localhost:3000/smart_home'
+  - url: 'http://localhost:3000'
 paths:
-  /meter:
+  /smart_home/meter:
     get:
       summary: Get Meter Status
       responses:

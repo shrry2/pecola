@@ -3,7 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe '/smart_home/meter' do
+  include Committee::Rails::Test::Methods
+
   let(:api_token) { ENV.fetch('API_TOKEN', nil) }
+
+  # @see https://github.com/willnet/committee-rails
+  def committee_options
+    @committee_options ||= {
+      schema_path: Rails.root.join('schema/reference/pecola-api.yml').to_s
+    }
+  end
 
   describe 'GET /smart_home/meter' do
     context 'with valid token' do
@@ -16,6 +25,10 @@ RSpec.describe '/smart_home/meter' do
 
       it 'returns a 200 status' do
         expect(response).to have_http_status(:ok)
+      end
+
+      it 'conforms to response schema' do
+        assert_response_schema_confirm
       end
 
       it 'returns a valid json' do
